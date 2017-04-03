@@ -4,9 +4,9 @@ import android.app.Application;
 import android.content.Intent;
 
 import ru.ab.eapp.components.AppComponent;
-import ru.ab.eapp.components.AppModule;
+import ru.ab.eapp.components.modules.AppModule;
 import ru.ab.eapp.components.DaggerAppComponent;
-import ru.ab.eapp.components.StoreModule;
+import ru.ab.eapp.components.modules.StoreModule;
 import ru.ab.eapp.services.TimerService;
 
 /**

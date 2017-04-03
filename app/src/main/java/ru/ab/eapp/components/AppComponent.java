@@ -1,12 +1,12 @@
 package ru.ab.eapp.components;
 
-import android.app.Application;
-
 import org.robobinding.binder.BinderFactory;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
+import ru.ab.eapp.components.modules.AppModule;
+import ru.ab.eapp.components.modules.StoreModule;
 import ru.ab.eapp.services.TimerService;
 import ru.ab.eapp.ui.AppActivity;
 import ru.ab.eapp.ui.MainFragment;

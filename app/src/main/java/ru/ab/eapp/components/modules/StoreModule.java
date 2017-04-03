@@ -1,4 +1,4 @@
-package ru.ab.eapp.components;
+package ru.ab.eapp.components.modules;
 
 import android.os.Handler;
 
