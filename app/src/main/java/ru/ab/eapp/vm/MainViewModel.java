@@ -1,5 +1,6 @@
 package ru.ab.eapp.vm;
 
+import org.robobinding.annotation.DependsOnStateOf;
 import org.robobinding.annotation.PresentationModel;
 
 import io.reactivex.disposables.Disposable;
@@ -12,20 +13,14 @@ import ru.ab.eapp.stores.TimerStore;
 @PresentationModel
 public class MainViewModel extends BaseViewModel implements Disposable {
 
-    private int seconds = 0;
     private TimerStore timerStore;
     private Disposable subscription;
 
     public MainViewModel(TimerStore timerStore) {
         this.timerStore = timerStore;
-        updateSeconds();
         subscription = this.timerStore.onChange().subscribe(aVoid -> {
-            updateSeconds();
+            fireChanged("time");
         });
-    }
-
-    private void updateSeconds() {
-        setSeconds(this.timerStore.getSeconds());
     }
 
     public void toggle() {
@@ -43,12 +38,13 @@ public class MainViewModel extends BaseViewModel implements Disposable {
     }
 
     public String getTime() {
+        int seconds = this.timerStore.getSeconds();
         return String.format("%02d:%02d", seconds / 60, seconds % 60);
     }
 
-    public void setSeconds(int seconds) {
-        this.seconds = seconds;
-        fireChanged("time");
+    @DependsOnStateOf("time")
+    public float getPercent() {
+        return this.timerStore.getSeconds() / 60.0f;
     }
 
     @Override

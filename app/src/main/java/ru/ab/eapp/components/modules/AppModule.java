@@ -4,13 +4,16 @@ import android.app.Application;
 
 import org.robobinding.binder.BinderFactory;
 import org.robobinding.binder.BinderFactoryBuilder;
+import org.robobinding.customviewbinding.CustomViewBindingDescription;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import ru.ab.eapp.App;
+import ru.ab.eapp.bindings.PieViewBinding;
 import ru.ab.eapp.stores.TimerStore;
+import ru.ab.eapp.ui.controls.PieView;
 import ru.ab.eapp.vm.AppViewModel;
 import ru.ab.eapp.vm.MainViewModel;
 
@@ -25,7 +28,9 @@ public class AppModule {
 
     public AppModule(App application) {
         mApplication = application;
-        binderFactory = new BinderFactoryBuilder().build();
+        binderFactory = new BinderFactoryBuilder()
+                .add(new PieViewBinding().extend(PieView.class))
+                .build();
     }
 
     @Provides

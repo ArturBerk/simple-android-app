@@ -4,23 +4,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:bind="http://robobinding.org/android"
-    tools:context="ru.ab.eapp.ui.MainFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="ru.ab.eapp.ui.MainFragment"
+    android:background="@color/white"
+    android:clipChildren="false">
 
     <FrameLayout
-        android:id="@+id/ripple"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:background="@drawable/ripple"></FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/button"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_gravity="center">
+        <FrameLayout
+            android:id="@+id/ripple"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/ripple"/>
+        <FrameLayout
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/round_button"
+            bind:onClick="toggle"
+            bind:onLongClick="reset"
+            android:elevation="20dp"/>
+    </FrameLayout>
+    <ru.ab.eapp.ui.controls.PieView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:layout_gravity="center"
-        android:background="@drawable/round_button"
-        bind:onClick="toggle"
-        bind:onLongClick="reset"></FrameLayout>
+        app:start="0"
+        app:end="0.5"
+        app:color="@color/grey"
+        bind:end="{percent}"
+        android:elevation="1dp"
+        />
+
+
 
     <TextView
         android:id="@+id/fullscreen_content"
